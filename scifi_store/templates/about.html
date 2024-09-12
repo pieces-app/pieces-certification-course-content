@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block content %}
+<div class="hero"></div>
+<h2 class="vt323-regular subtitle">
+  We love Sci-Fi, and we love toys. And we know you do too.
+</h2>
+<div class="container">
+  <p class="vt323-regular caption">Soon we will be selling a range of plushie toys inspired by your favorite Sci-Fi movies. Check back soon for more updates.</p>
+</div>
+
+<div class="image-container">
+  <img src="{{ url_for('static', filename='images/soon.jpeg') }}" alt="Coming Soon" class="rounded-image">
+</div>
+
+{% endblock %}

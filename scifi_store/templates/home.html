@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<div class="hero"></div>
+<h2 class="vt323-regular subtitle">
+  Your home for the best Sci-Fi inspired toys
+</h2>
+<div class="container">
+  <p class="vt323-regular caption">Check out some of our upcoming toys</p>
+</div>
+<div class="image-grid">
+  {% for image in images %}
+  <img
+    src="{{ url_for('static', filename='images/stock/' + image) }}"
+    alt="Sci-Fi Toy"
+  />
+  {% endfor %}
+</div>
+{% endblock %}

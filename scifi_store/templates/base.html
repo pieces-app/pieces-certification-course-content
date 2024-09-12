@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <title>Sci-Fi Toys</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="vt323-regular navbar">
+      <ul>
+        <li>
+          <a href="/" class="{{ 'active' if current_page == 'home' else '' }}"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="/about"
+            class="{{ 'active' if current_page == 'about' else '' }}"
+            >About</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <main>{% block content %}{% endblock %}</main>
+  </body>
+</html>
