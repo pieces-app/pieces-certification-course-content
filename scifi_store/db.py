@@ -6,13 +6,6 @@ from flask import g
 STOCK_DATABASE = "stock.db"
 
 
-def get_db():
-    db = getattr(g, "_database", None)
-    if db is None:
-        db = g._database = sqlite3.connect(STOCK_DATABASE)
-    return db
-
-
 def close_connection():
     db = getattr(g, "_database", None)
     if db is not None:
@@ -21,7 +14,9 @@ def close_connection():
 
 def _is_db_initialized(app):
     with app.app_context():
-        db = get_db()
+        db = getattr(g, "_database", None)
+        if db is None:
+            db = g._database = sqlite3.connect(STOCK_DATABASE)
         cur = db.execute(
             "SELECT name FROM sqlite_master WHERE type='table' AND name='stock'"
         )
@@ -31,7 +26,9 @@ def _is_db_initialized(app):
 def _init_db_if_required(app):
     if not _is_db_initialized(app):
         with app.app_context():
-            db = get_db()
+            db = getattr(g, "_database", None)
+            if db is None:
+                db = g._database = sqlite3.connect(STOCK_DATABASE)
             with app.open_resource("schema.sql", mode="r") as f:
                 db.cursor().executescript(f.read())
             db.commit()
@@ -40,7 +37,9 @@ def _init_db_if_required(app):
 
 def _load_data(app):
     with app.app_context():
-        db = get_db()
+        db = getattr(g, "_database", None)
+        if db is None:
+            db = g._database = sqlite3.connect(STOCK_DATABASE)
 
         with open("stock.json", "r") as f:
             data = json.load(f)
@@ -60,8 +59,11 @@ class Stock:
 
 def load_stock(app):
     with app.app_context():
-        db = get_db()
         _init_db_if_required(app)
+
+        db = getattr(g, "_database", None)
+        if db is None:
+            db = g._database = sqlite3.connect(STOCK_DATABASE)
         id_cur = db.execute("SELECT id FROM stock")
 
         stock = []
