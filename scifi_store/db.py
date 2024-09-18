@@ -63,11 +63,11 @@ def load_stock(app):
         id_cur = db.execute("SELECT id FROM stock")
 
         stock = []
-        for id_row in id_cur:
+        for id_row in id_cur.fetchall():
             cur = db.execute("SELECT name, image, description FROM stock WHERE id = ?", (id_row[0],))
             row = cur.fetchone()
 
-            stock_item = Stock(row.name, row.image, row.description)                
+            stock_item = Stock(row.name, row.image, row.description)
             stock.append(stock_item)
 
         return stock
