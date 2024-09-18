@@ -5,14 +5,12 @@ from flask import g
 
 STOCK_DATABASE = "stock.db"
 
-
 def close_connection():
     db = getattr(g, "_database", None)
     if db is not None:
         db.close()
 
-
-def _is_db_initialized(app):
+def _isDbInitialized(app):
     with app.app_context():
         db = getattr(g, "_database", None)
         if db is None:
@@ -22,9 +20,8 @@ def _is_db_initialized(app):
         )
         return cur.fetchone() is not None
 
-
-def _init_db_if_required(app):
-    if not _is_db_initialized(app):
+def _initDbIfRequired(app):
+    if not _isDbInitialized(app):
         with app.app_context():
             db = getattr(g, "_database", None)
             if db is None:
@@ -32,10 +29,9 @@ def _init_db_if_required(app):
             with app.open_resource("schema.sql", mode="r") as f:
                 db.cursor().executescript(f.read())
             db.commit()
-        _load_data(app)
+        _loadData(app)
 
-
-def _load_data(app):
+def _loadData(app):
     with app.app_context():
         db = getattr(g, "_database", None)
         if db is None:
@@ -59,7 +55,7 @@ class Stock:
 
 def load_stock(app):
     with app.app_context():
-        _init_db_if_required(app)
+        _initDbIfRequired(app)
 
         db = getattr(g, "_database", None)
         if db is None:
