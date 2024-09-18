@@ -1,0 +1,14 @@
+[
+    { "name": "Good and Evil 1", "image": "stock-1.jpeg", "description": "A selection of goodies and baddies" },
+    { "name": "Baddies", "image": "stock-2.jpeg", "description": "A selection of baddies" },
+    { "name": "Princess Leigh", "image": "stock-3.jpeg", "description": "A space princess. Check out the bagel hairstyle!" },
+    { "name": "Abi-two Benobi", "image": "stock-4.jpeg", "description": "Hello there! A mystic space wizard" },
+    { "name": "Doya", "image": "stock-5.jpeg", "description": "Powerful wizard, he is. Speak funny, he does." },
+    { "name": "Daft Wader", "image": "stock-6.jpeg", "description": "A powerful baddie. He also breaths loudly." },
+    { "name": "Cutebacca", "image": "stock-7.jpeg", "description": "A fuzzie bookie!" },
+    { "name": "Solo handle", "image": "stock-8.jpeg", "description": "A scruffy-looking Berf herder and smuggler" },
+    { "name": "2R-2D", "image": "stock-9.jpeg", "description": "A happy helpful robot" },
+    { "name": "D-PO3", "image": "stock-10.jpeg", "description": "An annoying robot" },
+    { "name": "Kill Planet", "image": "stock-11.jpeg", "description": "That's no moon! A space station that can destroy a planet." },
+    { "name": "Daft Haul", "image": "stock-12.jpeg", "description": "A scary bad wizard. Currently has legs." }
+]

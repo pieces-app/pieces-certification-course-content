@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+<h2 class="vt323-regular subtitle">Previews of our upcoming stock</h2>
+<br/>
+<div class="image-grid">
+  {% for stock_item in stock %}
+  <div>
+    <img
+      src="{{ url_for('static', filename='images/stock/' + stock_item.image) }}"
+      alt="Sci-Fi Toy"
+    />
+    <h3>{{ stock_item.name }}</h3>
+    <p>{{ stock_item.description }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

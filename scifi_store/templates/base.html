@@ -30,6 +30,13 @@
             >About</a
           >
         </li>
+        <li>
+          <a
+            href="/stock"
+            class="{{ 'active' if current_page == 'about' else '' }}"
+            >Stock</a
+          >
+        </li>
       </ul>
     </nav>
     <main>{% block content %}{% endblock %}</main>

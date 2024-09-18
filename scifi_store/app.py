@@ -1,6 +1,12 @@
 from flask import Flask, render_template
 
+import db
+
 app = Flask(__name__)
+
+@app.teardown_appcontext
+def teardown(exception):
+    db.close_connection()
 
 @app.route('/')
 def home():
@@ -11,5 +17,11 @@ def home():
 def about():
     return render_template('about.html', current_page='about')
 
+@app.route('/stock')
+def stock():
+    stock = db.load_stock(app)
+    return render_template('stock.html', stock=stock, current_page='stock')
+
 if __name__ == '__main__':
+    db.init_db_if_required(app)
     app.run(debug=True)
