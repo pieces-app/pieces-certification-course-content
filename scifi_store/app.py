@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    image_names = [f"stock-{n}.jpeg" for n in range(1, 12)]
+    image_names = [f"stock-{n}.jpeg" for n in range(1, 13)]
     return render_template('home.html', images=image_names, current_page='home')
 
 @app.route('/about')
