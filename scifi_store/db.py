@@ -19,7 +19,7 @@ def close_connection():
         db.close()
 
 
-def is_db_initialized(app):
+def _is_db_initialized(app):
     with app.app_context():
         db = get_db()
         cur = db.execute(
@@ -28,8 +28,8 @@ def is_db_initialized(app):
         return cur.fetchone() is not None
 
 
-def init_db_if_required(app):
-    if not is_db_initialized(app):
+def _init_db_if_required(app):
+    if not _is_db_initialized(app):
         with app.app_context():
             db = get_db()
             with app.open_resource("schema.sql", mode="r") as f:
@@ -61,7 +61,7 @@ class Stock:
 def load_stock(app):
     with app.app_context():
         db = get_db()
-        init_db_if_required(app)
+        _init_db_if_required(app)
         cur = db.execute("SELECT name, image, description FROM stock")
 
         stock = []

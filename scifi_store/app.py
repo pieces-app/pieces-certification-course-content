@@ -23,5 +23,4 @@ def stock():
     return render_template('stock.html', stock=stock, current_page='stock')
 
 if __name__ == '__main__':
-    db.init_db_if_required(app)
     app.run(debug=True)
